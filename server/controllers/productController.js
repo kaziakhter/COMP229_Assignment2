@@ -63,10 +63,9 @@ const removeAllProducts = async (req, res) => {
 };
 
 const findProductsByName = async (req, res) => {
-  const { name } = req.query;
+  const name  = req.params.name;
   try {
     const products = await Product.find({ name: { $regex: name, $options: 'i' } });
-    //const products = await Product.find({ name: name });
     res.json(products);
   } catch (error) {
     res.status(500).json({ error: error.message });
