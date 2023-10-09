@@ -12,6 +12,6 @@ router.post('/', validateProductInput, productController.addProduct);
 router.put('/:id', productController.updateProductById);
 router.delete('/:id', productController.removeProductById);
 router.delete('/', productController.removeAllProducts);
-router.get('/search', productController.findProductsByName);
+router.get('/search/:name', productController.findProductsByName);
 
 module.exports = router;
