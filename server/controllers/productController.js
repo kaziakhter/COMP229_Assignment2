@@ -13,7 +13,7 @@ const getAllProducts = async (req, res) => {
     const products = await Product.find();
     res.json(products);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(404).json({ error: error.message });
   }
 };
 
@@ -30,7 +30,7 @@ const addProduct = async (req, res) => {
   const product = new Product(req.body);
   try {
     const newProduct = await product.save();
-    res.status(201).json(newProduct);
+    res.status(200).json(newProduct);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -41,7 +41,7 @@ const updateProductById = async (req, res) => {
     const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.json(updatedProduct);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: 'invalid id' });
   }
 };
 
@@ -50,7 +50,7 @@ const removeProductById = async (req, res) => {
     await Product.findByIdAndRemove(req.params.id);
     res.json({ message: 'Product removed successfully' });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: 'invalid id' });
   }
 };
 const removeAllProducts = async (req, res) => {
@@ -58,7 +58,7 @@ const removeAllProducts = async (req, res) => {
     await Product.deleteMany({});
     res.json({ message: 'All products removed successfully' });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: 'something went wrong' });
   }
 };
 
