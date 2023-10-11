@@ -13,5 +13,7 @@ router.post('/', categoryController.addCategory);
 router.get('/:id', categoryController.getCategoryById);
 router.put('/:id', categoryController.updateCategoryById);
 router.delete('/:id', categoryController.removeCategoryById);
+router.delete('/', categoryController.removeAllCategories);
+router.get('/search/:name', categoryController.findCategoriesByName);
 
 module.exports = router;
