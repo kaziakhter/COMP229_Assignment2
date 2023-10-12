@@ -58,7 +58,7 @@ const removeAllProducts = async (req, res) => {
     await Product.deleteMany({});
     res.json({ message: 'All products removed successfully' });
   } catch (error) {
-    res.status(500).json({ error: 'something went wrong' });
+    res.status(404).json({ error: error.message });
   }
 };
 
